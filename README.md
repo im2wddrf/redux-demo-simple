@@ -1,68 +1,44 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Basic Redux Sample
 
-## Available Scripts
+This is a simple project that showcases a simple use case of the Redux store. The majority of the code came from Stephen Grider's course on Udemy (a course I highly [recommend](https://www.udemy.com/share/101Wz0CUMfclZQRHo=/)). 
 
-In the project directory, you can run:
+I used Semantic UI for generating all of the UI elements. The structure of the webpage is not ideal. Though the web app design could be simplified greatly, I chose to go with creating three distinct "forms" to highlight the fact that we are executing a specific action on the Redux store.
 
-### `npm start`
+What helped me to understand the relationship between actions and reducers was taking the concept from Grider's tutorial and wiring it up myself into a simple app. This repo is more as a simple tutorial for any beginner developer that want to see how a see how to set up a Redux store. I added a `console.log()` in the `ClientList.js` file so that developers can see the changes in the state / props as each action is executed (remember to open your browser's console window!).
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Instructions
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+In order to run the project locally on your machine, you can follow these steps: 
 
-### `npm test`
+1. Download this repository. Instructions for downloading a repo can be found here. 
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Using your machine's terminal or shell, enter the top level of the project directory. Run `npm install`. This will generate a `node_modules` folder that will contain the packages necessary for the react project.
 
-### `npm run build`
+3. Now run `npm start` and the project should run on a local server
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## How it works
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This is a simple project that showcases a basic use case of Redux. I am using Stephen Grider's "insurance company" model.This Redux store contains the following: 
 
-### `npm run eject`
+* `accounting`: A number that describes the amount of funds that are available at this company.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+* `policies`: An array of strings. Each string is a name of a person that is signed on to this company.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* `claimsHistory`: An array of objects. Each object describes an instance of when a person requests funds (makes a claim) to the company. Each object contains merely a name and an amount of money that is claimed. 
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+On the top menu bar, on the right hand side should be a dollar amount that the company holds. By default the company starts at one thousand. Each claim that is made will subtract funds from the total.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Description of the `/actions`
 
-## Learn More
+There are only three actions, all of which are described in the `/src/actions` folder. They are the following: 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* create a claim: have somone draw funds from the company.
+* create a policy: adding someone to the company
+* delete a policy: removing someone's name from the company
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Description of the `/reducers`
 
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+The reducers are described in the `/src/reducers` folder. If an action is received, it will act upon the Redux store to modify the data. Each reducer has a comment that briefly describes how it receives an action and what it is supposed to do with it.
